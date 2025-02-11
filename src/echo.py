@@ -16,7 +16,7 @@ def main():
 
     shadowplay.verbose = verbose
 
-    print("Watching for mode changes...")
+    print(f"Watching for {mode.name} changes...")
     while True:
         modes = destiny.retrieve_current_activity_modes()
 
