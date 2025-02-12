@@ -1,17 +1,13 @@
 import requests
-from datetime import datetime, timezone
+from dateutil import parser
 import random
 
 
-api_key = "8c84b6c7a153461fac699e2ab24283e7"
+api_key = None
 user_agent = "echo"
+verbose = False
 
 PROFILE_URL_TEMPLATE = ""
-
-HEADERS_TEMPLATE = {
-    "X-API-Key": f"{api_key}",
-    "User-Agent": f"{user_agent}",
-}
 
 _headers = None
 
@@ -25,7 +21,10 @@ def _get_headers():
         raise APIKeyNotSetError("API Key Not Set")
 
     if _headers == None:
-        _headers = HEADERS_TEMPLATE
+        _headers = {
+            "X-API-Key": f"{api_key}",
+            "User-Agent": f"{user_agent}",
+        }
 
     return _headers
 
@@ -45,7 +44,8 @@ def find_most_recent_character(profile):
 
     mostRecentCharacter = None
     for key in characters:
-        d = datetime.strptime(characters[key]["dateLastPlayed"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+        #d = datetime.strptime(characters[key]["dateLastPlayed"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+        d = parser.isoparse(characters[key]["dateLastPlayed"])
 
         character = {
             "id":key,
@@ -58,8 +58,6 @@ def find_most_recent_character(profile):
     return mostRecentCharacter
 
 
-
-
 def retrieve_profile():
     global _mostRecentProfileData
 
@@ -67,9 +65,7 @@ def retrieve_profile():
     url = f"https://www.bungie.net/Platform/Destiny2/1/Profile/4611686018429783292/?components=200,204,1000&rnd={rnd}"
     data = retrieve_json(url)
 
-    d = datetime.strptime(data["Response"]["responseMintedTimestamp"], "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=timezone.utc)
-
-    #d = datetime.strptime(data["Response"]["responseMintedTimestamp"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    d = parser.isoparse(data["Response"]["responseMintedTimestamp"])
 
     if _mostRecentProfileData == None or d > _mostRecentProfileData["responseMintedTimestamp"]:
         _mostRecentProfileData = {
