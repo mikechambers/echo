@@ -48,7 +48,6 @@ def main():
     destiny = Destiny(api_key, verbose)
 
     member = destiny.retrieve_member(bungie_id)
-    print(member)
 
     print(f"Watching for {mode.name} changes...")
     while True:
