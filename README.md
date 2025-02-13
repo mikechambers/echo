@@ -2,7 +2,9 @@
 
 Video clip capture for Nvidia ShadowPlay and Destiny 2
 
-echo is a Python3 script that creates a tracks Destiny 2 gameplay and automatically creates clips of the specificed game mode using NVIDIA Shadowplay.
+echo is a Python3 script that tracks Destiny 2 game play and automatically creates clips of the specified game mode using NVIDIA Shadowplay.
+
+For example, you could have it automatically start recording when you start a PVP match, and end it when the match is over.
 
 ## Requirements
 
