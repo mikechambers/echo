@@ -1,8 +1,31 @@
+# Copyright (c) 2025 Mike Chambers
+# https://github.com/mikechambers/echo
+#
+# MIT License
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal in
+# the Software without restriction, including without limitation the rights to
+# use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+# of the Software, and to permit persons to whom the Software is furnished to do
+# so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 import sys
 import os
 import argparse
 from modules import shadowplay
-from modules import destiny
+from modules.destiny import Destiny
+from modules.member import BungieId
 from modules.mode import Mode
 import time
 
@@ -15,13 +38,17 @@ mode = None
 last_modes = []
 
 api_key = None
+bungie_id = None
 
 def main():
-    global verbose, last_modes, api_key
+    global verbose, last_modes, api_key, bungie_id
 
     shadowplay.verbose = verbose
-    destiny.api_key = api_key
-    destiny.verbose = verbose
+
+    destiny = Destiny(api_key, verbose)
+
+    member = destiny.retrieve_member(bungie_id)
+    print(member)
 
     print(f"Watching for {mode.name} changes...")
     while True:
@@ -38,6 +65,16 @@ def main():
         #    print(f"Modes Changed: {modes}")
         #    lastMode = mode
         time.sleep(2)
+
+
+def _parse_bungie_id(value: str) -> BungieId:
+    """Parses and validates the Bungie ID, returning a BungieId object"""
+    bungie_id = BungieId.from_string(value)
+    if not bungie_id.is_valid:
+        raise argparse.ArgumentTypeError(
+            "Invalid Bungie ID format. Expected format: NAME#1234 (e.g., Guardian#1234)"
+        )
+    return bungie_id  # Return the actual BungieId object
 
 def _get_arg_from_env_or_error(env_var, arg_value, arg_name):
     """Return argument value, fallback to environment variable, else throw an error."""
@@ -71,9 +108,9 @@ if __name__ == "__main__":
     
     parser.add_argument(
         "--bungie-id",
-        type=str,
-        help="Bungie ID (NAME#ID) for the account to track (will automatically track the last played character)",
-        required = True
+        type=_parse_bungie_id,  # Parse directly into a BungieId object
+        help="Bungie ID (NAME#ID) for the account to track (e.g., Guardian#1234)",
+        required=True,
     )
 
     parser.add_argument(
@@ -88,7 +125,8 @@ if __name__ == "__main__":
 
     verbose = args.verbose
     mode = args.mode
-    
+    bungie_id = args.bungie_id
+
     try:
         main()
     except Exception as e:
