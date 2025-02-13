@@ -29,10 +29,10 @@ from modules.member import BungieId
 from modules.mode import Mode
 import time
 
+VERSION = "0.85.1"
 API_KEY_ENV_NAME = "DESTINY_API_KEY"
 
 verbose = False
-
 
 mode = None
 last_modes = []
@@ -91,6 +91,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Automate Destiny 2 Video clip capture with NVIDIA ShadowPlay"
     )
+
+    parser.add_argument(
+        '--version',
+        action='version',
+        version=f'%(prog)s {VERSION}',
+        help="Display the version")
 
     parser.add_argument(
         '--verbose',
