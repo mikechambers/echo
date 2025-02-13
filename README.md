@@ -39,6 +39,10 @@ You can find a complete list of options by running:
 python3 echo.py --help
 ```
 
+## Known Issues
+
+This is a first beta, so there are a lot of rouch edges. Error handing on API calls is basic, so if something goes wrong (especially with the API), there will not be detailed info yet.
+
 ## Questions, Feature Requests, Feedback
 
 If you have any questions, feature requests, need help, or just want to chat, you can ping me on [Twitter](https://twitter.com/mesh) or via email at [mikechambers@gmail.com](mailto:mikechambers@gmail.com).
