@@ -10,7 +10,7 @@ This script requires that:
 
 -   Python 3 is installed
 -   NVIDIA Shadowplay is installed and enabled
--   The keyboard shortcut to toggle recording is ALT-F
+-   The keyboard shortcut to toggle recording is ALT-F9
 -   You have a valid Destiny 2 Developer API Key. You can grab one from the [Bungie Developer Portal](https://www.bungie.net/en/User/API)
 
 ## Installation
