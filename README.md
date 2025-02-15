@@ -1,6 +1,6 @@
 # echo
 
-echo is a Python3 script that tracks Destiny 2 game play and automatically creates clips of the specified game mode using NVIDIA Shadowplay.
+echo is a Python3 script that tracks Destiny 2 game play and automatically creates recordings of the specified game mode using NVIDIA Shadowplay.
 
 For example, you could have it automatically start recording when you start a PVP match, and end it when the match is over.
 
@@ -10,7 +10,6 @@ This script requires that:
 
 -   Python 3 is installed
 -   NVIDIA Shadowplay is installed and enabled
--   The keyboard shortcut to toggle recording is ALT-F9
 -   You have a valid Destiny 2 Developer API Key. You can grab one from the [Bungie Developer Portal](https://www.bungie.net/en/User/API)
 
 ## Installation
@@ -31,7 +30,9 @@ python3 echo.py --mode all_pvp --bungie-id mesh#3230 --api-key XXXXXXXXXXXXXXXXX
 
 The video clip will be saved in the default directory for NVIDIA Shadowplay clips.
 
-Note, if the API key is not specified via the command line, the script will look for it in an environment variable named DESTINY_API_KEY
+Note, if the API key is not specified via the command line, the script will look for it in an environment variable named DESTINY_API_KEY.
+
+By default, it uses the ALT-F9 keyboard shortcut to toggle video recording (the default for Shadowplay). You can change this via the *--keyboard-shortcut* argument when calling the script.
 
 You can find a complete list of options by running:
 
@@ -41,7 +42,9 @@ python3 echo.py --help
 
 ## Known Issues
 
-This is a first beta, so there are a lot of rouch edges. Error handing on API calls is basic, so if something goes wrong (especially with the API), there will not be detailed info yet.
+This is a first beta, so there are a lot of rough edges. Error handing on API calls is basic, so if something goes wrong (especially with the API), there will not be detailed info yet.
+
+If the script starts recording, and you manually stop recording, the script may no longer work (it won't know the status of recording).
 
 ## Questions, Feature Requests, Feedback
 
