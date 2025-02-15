@@ -33,6 +33,7 @@ VERSION = "0.85.1"
 API_KEY_ENV_NAME = "DESTINY_API_KEY"
 
 verbose = False
+keyboard_shortcut = None
 
 mode = None
 last_modes = []
@@ -42,6 +43,9 @@ bungie_id = None
 
 def main():
     global verbose, last_modes, api_key, bungie_id
+
+    if keyboard_shortcut:
+        shadowplay.keyboard_shortcut = keyboard_shortcut
 
     shadowplay.verbose = verbose
 
@@ -105,6 +109,12 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
+        '--keyboard-shortcut',
+        type="str",
+        help='Keyboard shortcut used to toggle recording.'
+    )
+
+    parser.add_argument(
         "--mode",
         type=Mode.from_string,
         choices=list(Mode),
@@ -131,6 +141,7 @@ if __name__ == "__main__":
     verbose = args.verbose
     mode = args.mode
     bungie_id = args.bungie_id
+    keyboard_shortcut = args.keyboard_shortcut
 
     try:
         main()

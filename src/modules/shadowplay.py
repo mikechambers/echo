@@ -3,7 +3,7 @@ from datetime import datetime
 from modules.utils import format_elapsed_time
 
 verbose = False
-TOGGLE_RECORD_SHORTCUT = "alt+F9"
+keyboard_shortcut = "alt+F9"
 is_recording = False
 recording_start_time = None
 
@@ -13,7 +13,7 @@ def start_capture():
     if is_recording:
         stop_capture()
 
-    keyboard.send(TOGGLE_RECORD_SHORTCUT)
+    keyboard.send(keyboard_shortcut)
     is_recording = True
     recording_start_time = datetime.now()
 
@@ -26,7 +26,7 @@ def stop_capture():
     if not is_recording:
         return
     
-    keyboard.send(TOGGLE_RECORD_SHORTCUT)
+    keyboard.send(keyboard_shortcut)
     is_recording = False
 
     #TODO: Need to check if recording_start_time is None
