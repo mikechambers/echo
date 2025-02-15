@@ -4,6 +4,8 @@ echo is a Python3 script that tracks Destiny 2 game play and automatically creat
 
 For example, you could have it automatically start recording when you start a PVP match, and end it when the match is over.
 
+If you run into any issues, have any ideas, or just want to chat, please post in [issues](https://github.com/mikechambers/echo/issues) or share on [Discord](https://discord.gg/2Y8bV2Mq3p).
+
 ## Requirements
 
 This script requires that:
@@ -48,7 +50,7 @@ If the script starts recording, and you manually stop recording, the script may 
 
 ## Questions, Feature Requests, Feedback
 
-If you have any questions, feature requests, need help, or just want to chat, you can ping me on [Twitter](https://twitter.com/mesh) or via email at [mikechambers@gmail.com](mailto:mikechambers@gmail.com).
+If you have any questions, feature requests, need help, or just want to chat, you can ask on the [Discord](https://discord.gg/2Y8bV2Mq3p) as well as ping me on [Twitter](https://twitter.com/mesh) or via email at [mikechambers@gmail.com](mailto:mikechambers@gmail.com).
 
 You can also log bugs and feature requests on the [issues page](https://github.com/mikechambers/echo/issues).
 
