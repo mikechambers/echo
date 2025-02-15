@@ -1,6 +1,6 @@
 # echo
 
-echo is a Python3 script that tracks Destiny 2 game play and automatically creates recordings of the specified game mode using NVIDIA Shadowplay.
+echo is a Python3 script that tracks Destiny 2 game play and automatically creates recordings of the specified game mode using [NVIDIA Shadowplay](https://www.nvidia.com/en-ph/geforce/geforce-experience/shadowplay/) or [Steam Game Recording](https://store.steampowered.com/gamerecording).
 
 For example, you could have it automatically start recording when you start a PVP match, and end it when the match is over.
 
@@ -34,7 +34,13 @@ The video clip will be saved in the default directory for NVIDIA Shadowplay clip
 
 Note, if the API key is not specified via the command line, the script will look for it in an environment variable named DESTINY_API_KEY.
 
-By default, it uses the ALT-F9 keyboard shortcut to toggle video recording (the default for Shadowplay). You can change this via the *--keyboard-shortcut* argument when calling the script.
+By default, it uses the ALT-F9 keyboard shortcut to toggle video recording (the default for Shadowplay). You can change this via the _--keyboard-shortcut_ argument when calling the script.
+
+By default, the script uses the keyboard shortcut for NVIDIA Shadowplay. If you are using Steam Game Recording, then specify the keyboard shortcut to enable it (by default _CTRL+F11_)
+
+```bash
+python3 echo.py --mode all_pvp --bungie-id mesh#3230 --api-key XXXXXXXXXXXXXXXXXXXXX --keyboard-shortcut "CTRL+F11"
+```
 
 You can find a complete list of options by running:
 

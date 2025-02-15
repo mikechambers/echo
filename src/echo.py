@@ -42,7 +42,7 @@ api_key = None
 bungie_id = None
 
 def main():
-    global verbose, last_modes, api_key, bungie_id
+    global verbose, last_modes, api_key, bungie_id, keyboard_shortcut
 
     if keyboard_shortcut:
         shadowplay.keyboard_shortcut = keyboard_shortcut
@@ -110,8 +110,8 @@ if __name__ == "__main__":
 
     parser.add_argument(
         '--keyboard-shortcut',
-        type="str",
-        help='Keyboard shortcut used to toggle recording.'
+        type=str,
+        help='Keyboard shortcut used to toggle recording. Default is "ALT+F9" (NVIDIA Shadowplay). Use "CTRL+F11 for Steam Game Recording.'
     )
 
     parser.add_argument(
