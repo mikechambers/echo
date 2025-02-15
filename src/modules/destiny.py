@@ -42,6 +42,9 @@ class Destiny:
             "displayNameCode": bungie_id.code
         }
 
+        if self.verbose:
+            print(f"retrieve_member : {url}")
+        
         # Send the POST request
         response_data = self.retrieve_json_post(url, data)
 
@@ -148,6 +151,9 @@ class Destiny:
 
         rnd = random.randint(10000, 10000000)
         url = f"https://www.bungie.net/Platform/Destiny2/1/Profile/4611686018429783292/?components=200,204,1000&rnd={rnd}"
+
+        if self.verbose:
+            print(f"retrieve_profile : {url}")
 
         data = self.retrieve_json_get(url)
 
