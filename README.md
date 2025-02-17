@@ -11,7 +11,7 @@ If you run into any issues, have any ideas, or just want to chat, please post in
 This script requires that:
 
 -   Python 3 is installed
--   NVIDIA Shadowplay is installed and enabled
+-   NVIDIA Shadowplay or Stream Game Recording is installed and enabled
 -   You have a valid Destiny 2 Developer API Key. You can grab one from the [Bungie Developer Portal](https://www.bungie.net/en/User/API)
 
 ## Installation
