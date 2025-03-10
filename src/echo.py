@@ -55,7 +55,7 @@ def main():
 
     print(f"Watching for {mode.name} changes...")
     while True:
-        modes = destiny.retrieve_current_activity_modes()
+        modes = destiny.retrieve_current_activity_modes(member)
 
         if mode.value in modes and mode.value not in last_modes:
             shadowplay.start_capture()
